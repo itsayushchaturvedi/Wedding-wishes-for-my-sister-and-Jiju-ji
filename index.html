@@ -1,65 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Dilraj & Vanshika | Wedding</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<title>Dilraj & Vanshika | Supreme Wedding</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-    body{background:linear-gradient(135deg,#ff758c,#ff7eb3);color:white;overflow-x:hidden;}
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{background:radial-gradient(circle at top,#1a0033,#2b1055,#000);color:white;overflow-x:hidden;}
 
-    audio{display:none;}
+audio{display:none;}
 
-    .page{min-height:100vh;display:none;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:20px;animation:fadeIn .6s ease;}
-    .active{display:flex;}
+/* Rotating gold background */
+body::before{
+  content:"";
+  position:fixed;top:-50%;left:-50%;
+  width:200%;height:200%;
+  background:conic-gradient(from 0deg,#ffd700,#ff7a00,#ff4fd8,#ffd700);
+  animation:rotateBg 25s linear infinite;
+  z-index:-1;opacity:.12;
+}
+@keyframes rotateBg{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
 
-    h1{font-family:'Playfair Display',serif;font-size:42px;}
-    h2{font-size:24px;margin-top:10px;}
+/* Pages */
+.page{min-height:100vh;display:none;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:30px 15px;animation:fadeIn .8s ease;}
+.active{display:flex;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(15px);}to{opacity:1;transform:translateY(0);}}
 
-    .heart{font-size:60px;animation:pulse 1.5s infinite;margin:20px;}
-    .card{
-      background:rgba(255,255,255,0.15);
-      border-radius:25px;
-      padding:25px;
-      margin:15px 0;
-      width:90%;
-      max-width:450px;
-      backdrop-filter:blur(10px);
-      box-shadow:0 15px 40px rgba(0,0,0,0.25);
-    }
+/* Headings */
+h1{font-family:'Playfair Display', serif;font-size:44px;background:linear-gradient(45deg,#ffd700,#ffb000,#ff4fd8);-webkit-background-clip:text;color:transparent;text-shadow:0 10px 50px rgba(255,215,0,0.3);}
+h2{font-size:24px;margin-top:10px;letter-spacing:1px;}
 
-    .btn{
-      margin-top:20px;
-      padding:12px 28px;
-      border:none;
-      border-radius:50px;
-      background:white;
-      color:#ff3f6c;
-      font-weight:bold;
-      cursor:pointer;
-    }
+/* Heart */
+.heart{font-size:75px;animation:heartbeat 1.3s infinite;margin:20px 0;filter:drop-shadow(0 0 15px #ff4f9a);}
+@keyframes heartbeat{0%{transform:scale(1);}50%{transform:scale(1.25);}100%{transform:scale(1);}}
 
-    .nav{
-      position:fixed;
-      bottom:15px;
-      display:flex;
-      gap:10px;
-      z-index:10;
-    }
+/* Glass card */
+.card{
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.15);
+  backdrop-filter:blur(20px);
+  border-radius:30px;
+  padding:30px 25px;
+  margin:15px 0;
+  width:90%;
+  max-width:520px;
+  box-shadow:0 30px 80px rgba(0,0,0,0.6);
+  transform:perspective(1000px) rotateX(3deg);
+  transition:transform .4s ease, box-shadow .4s ease;
+}
+.card:hover{transform:perspective(1000px) rotateX(0deg) translateY(-10px);box-shadow:0 40px 100px rgba(255,215,0,0.5);}
 
-    @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.2)}100%{transform:scale(1)}}
-    @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+/* Buttons */
+.btn{
+  margin-top:25px;
+  padding:14px 40px;
+  border:none;
+  border-radius:60px;
+  background:linear-gradient(45deg,#ffcf4d,#ff8c00);
+  color:#2a0033;
+  font-weight:bold;
+  font-size:16px;
+  cursor:pointer;
+  box-shadow:0 10px 40px rgba(255,215,0,0.4);
+  transition:.3s ease;
+}
+.btn:hover{transform:scale(1.08);box-shadow:0 15px 60px rgba(255,215,0,0.6);}
 
-    /* Falling flowers */
-    .flowers{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;}
-    .flower{position:absolute;font-size:22px;animation:fall linear infinite;}
-    @keyframes fall{from{transform:translateY(-10vh)}to{transform:translateY(110vh)}}
+.nav{position:fixed;bottom:20px;display:flex;gap:15px;z-index:10;}
 
-    footer{font-size:14px;opacity:.8;margin-top:30px;}
-  </style>
+/* Sparkles */
+.sparkles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;}
+.sparkle{position:absolute;width:6px;height:6px;background:gold;border-radius:50%;box-shadow:0 0 12px gold;opacity:.9;animation:twinkle linear infinite;}
+@keyframes twinkle{from{transform:translateY(-10vh) scale(.5);}to{transform:translateY(110vh) scale(1.8);}}
+
+/* Footer */
+footer{font-size:14px;opacity:.85;margin-top:30px;}
+
+/* Ganesh Image */
+.ganesh{width:150px;height:auto;margin-bottom:15px;animation:floatGanesh 3s ease-in-out infinite alternate;}
+@keyframes floatGanesh{0%{transform:translateY(0);}100%{transform:translateY(-10px);}}
+
+/* Gold Coin */
+.coin{
+  position:fixed;
+  top:-50px;
+  width:40px;
+  height:40px;
+  background:radial-gradient(circle, gold 60%, #ffa500 100%);
+  border-radius:50%;
+  box-shadow:0 0 15px gold;
+  z-index:5;
+  animation:fallCoin linear infinite;
+}
+@keyframes fallCoin{0%{transform:translateY(-50px);}100%{transform:translateY(110vh);}}
+</style>
 </head>
 <body>
 
@@ -68,42 +106,50 @@
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
-<!-- Flowers -->
-<div class="flowers" id="flowers"></div>
+<!-- Sparkles -->
+<div class="sparkles" id="sparkles"></div>
+
+<!-- Coins Container -->
+<div id="coinsContainer"></div>
 
 <!-- PAGE 1 : Welcome -->
 <div class="page active" id="page1">
-  <h1>💍 Wedding Invitation 💍</h1>
+  <img src="ganesh.png" class="ganesh" alt="Ganesh Blessing">
+  <h1>Dilraj Kirar & Vanshika Yadav</h1>
   <div class="heart">❤</div>
-  <h2>Dilraj Kirar & Vanshika Yadav</h2>
+  <h2>You are invited to our Supreme Wedding!</h2>
   <button class="btn" onclick="startSite()">Enter Website</button>
 </div>
 
-<!-- PAGE 2 : Details -->
+<!-- PAGE 2 : Wedding Details -->
 <div class="page" id="page2">
+  <img src="ganesh.png" class="ganesh" alt="Ganesh Blessing">
   <h1>Wedding Details</h1>
   <div class="card">
-    <p>📅 Date: 2 april 2025</p>
+    <p>📍 Venue: Jiwaji Club, Gwalior, Madhya Pradesh</p>
+    <p>📅 Date: 25 December 2025</p>
     <p>⏰ Time: 7:00 PM</p>
-    <p>📍 Venue: jivaji club gwalior madhya pradesh </p>
   </div>
 </div>
 
-<!-- PAGE 3 : Wishes from Ayush -->
+<!-- PAGE 3 : Ayush's Wishes -->
 <div class="page" id="page3">
+  <img src="ganesh.png" class="ganesh" alt="Ganesh Blessing">
   <h1>Special Wishes</h1>
   <div class="card">
     <p>✨ Wishing Dilraj & Vanshika a lifetime of love and happiness.</p>
-    <p>💖 May your marriage be filled with joy, understanding, and beautiful moments.</p>
+    <p>💖 May your marriage be full of joy, understanding, and beautiful moments.</p>
     <p><b>— Best Wishes from Ayush</b></p>
   </div>
 </div>
 
 <!-- PAGE 4 : Thank You -->
 <div class="page" id="page4">
+  <img src="ganesh.png" class="ganesh" alt="Ganesh Blessing">
   <h1>Thank You</h1>
+  <h2>You are invited to our Supreme Wedding!</h2> <!-- Added invitation text -->
   <div class="card">
-    <p>Thank you for being part of our special journey.</p>
+    <p>Thank you for being part of our special day.</p>
     <p>We look forward to celebrating with you! 🥂</p>
   </div>
   <footer>Made with ❤️ by Ayush</footer>
@@ -117,9 +163,9 @@
 </div>
 
 <script>
-  let currentPage = 1;
-  const totalPages = 4;
-  const music = document.getElementById("music");
+  let currentPage=1;
+  const totalPages=4;
+  const music=document.getElementById("music");
 
   function showPage(num){
     for(let i=1;i<=totalPages;i++){
@@ -128,41 +174,20 @@
     document.getElementById("page"+num).classList.add("active");
   }
 
-  function startSite(){
-    music.play();
-    nextPage();
-  }
+  function startSite(){music.play(); nextPage();}
+  function nextPage(){if(currentPage<totalPages) currentPage++; showPage(currentPage);}
+  function prevPage(){if(currentPage>1) currentPage--; showPage(currentPage);}
+  function toggleMusic(){if(music.paused) music.play(); else music.pause();}
 
-  function nextPage(){
-    if(currentPage < totalPages) currentPage++;
-    showPage(currentPage);
-  }
+  // Sparkles
+  const container=document.getElementById("sparkles");
+  function createSparkle(){const s=document.createElement("div"); s.className="sparkle"; s.style.left=Math.random()*100+"vw"; s.style.animationDuration=(2+Math.random()*4)+"s"; container.appendChild(s); setTimeout(()=>s.remove(),6000);}
+  setInterval(createSparkle,200);
 
-  function prevPage(){
-    if(currentPage > 1) currentPage--;
-    showPage(currentPage);
-  }
-
-  function toggleMusic(){
-    if(music.paused) music.play();
-    else music.pause();
-  }
-
-  // Falling flowers
-  const container = document.getElementById("flowers");
-  const emojis = ["🌸","🌺","🌷","💐"];
-
-  function createFlower(){
-    const f = document.createElement("div");
-    f.className = "flower";
-    f.innerHTML = emojis[Math.floor(Math.random()*emojis.length)];
-    f.style.left = Math.random()*100 + "vw";
-    f.style.animationDuration = (3 + Math.random()*5) + "s";
-    container.appendChild(f);
-    setTimeout(()=>f.remove(),8000);
-  }
-
-  setInterval(createFlower, 300);
+  // Coins
+  const coinContainer=document.getElementById("coinsContainer");
+  function createCoin(){const c=document.createElement("div"); c.className="coin"; c.style.left=Math.random()*100+"vw"; c.style.animationDuration=(3+Math.random()*3)+"s"; coinContainer.appendChild(c); setTimeout(()=>c.remove(),8000);}
+  setInterval(createCoin,800);
 </script>
 
 </body>
